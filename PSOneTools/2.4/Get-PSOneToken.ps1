@@ -95,6 +95,7 @@ function Get-PSOneToken
     # if a path was submitted, read code from file,
     if ($PSCmdlet.ParameterSetName -eq 'Path')
     {
+      $Path = (Get-ChildItem $Path).FullName # Now you can use dot sourced ps files like '.\example.ps1'
       $code = Get-Content -Path $Path -Raw -Encoding Default
       $name = Split-Path -Path $Path -Leaf
       $filepath = $Path
